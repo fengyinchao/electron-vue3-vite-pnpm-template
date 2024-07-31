@@ -1,0 +1,47 @@
+:root {
+  background: none;
+  font-family: 'Cera Round Pro', 'PingFang SC', 'Sarasa UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body.monster {
+  font-family: 'Sea Monster' !important;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  background-color: transparent !important;
+  font-family: inherit !important;
+}
+
+.main {
+  flex: 1;
+  min-height: 100vh;
+  // 底部预留20px空间，side-bar与main相同
+  max-height: calc(100vh - 60px - 20px);
+  padding: 0 32px;
+  & > .n-scrollbar-container {
+    margin: 60px 0;
+  }
+}
+
+.side-bar {
+  text-align: left;
+  padding: 0 16px;
+  min-height: 100vh;
+  max-height: calc(100vh - 32px - 20px);
+  width: 256px;
+  & > .n-scrollbar-container {
+    margin: 32px 0;
+  }
+}
+
+.n-message-container.n-message-container--top {
+  // 调整 message 顶部位置，避免因被顶部栏遮挡点击事件导致 message 无法点击关闭按钮
+  top: 32px;
+}

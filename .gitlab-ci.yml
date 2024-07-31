@@ -1,0 +1,41 @@
+variables:
+  SVC_CODE: 'game-config-admin-front'
+  NODE_VERSION: 'v18.0.0'
+  ENABLE_SHENGNEI: 'true'
+  ENABLE_YINGTAN: 'false'
+  ENABLE_SHENGWAI: 'false'
+
+include:
+  - project: base/gitlab-ci
+    file: frontend-gitlab-ci-cdn.yml
+    ref: master
+
+# 省内生产环境打包编译
+build-prod-shengnei:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master" && $ENABLE_SHENGNEI == "true"
+      when: always
+  image: repository.zonst.com/gitlab-ci/frontend-ci:node18.0.0-pnpm7.27.1
+  # extends: .node-cache
+  script:
+    - node --version
+    - pnpm config set registry http://verdaccio.zonst.com/
+    - pnpm install
+    - pnpm build
+    - git config --global user.email "fengyinchao@zonst.com"
+    - git config --global user.name "fengyinchao"
+    - git clone https://oauth2:zonst-gXyQQrM-zSxYxS4Vf274@git.xq5.com/office/front/game-config.git
+    - cd game-config
+    - node -e "const fs = require('fs'); let packageJson = fs.readFileSync('package.json'); let packageData = JSON.parse(packageJson); let versionParts = packageData.version.split('.'); versionParts[2] = parseInt(versionParts[2]) + 1; let newVersion = versionParts.join('.'); packageData.version = newVersion; fs.writeFileSync('package.json', JSON.stringify(packageData, null, 2)); console.log('版本号已更新为：', newVersion);"
+    - git add package.json
+    - git commit -m "Bump version in package.json vi CI [ci skip]"
+    - git push origin $CI_COMMIT_REF_NAME
+  tags:
+    - docker
+  artifacts:
+    untracked: false
+    when: on_success
+    expire_in: '1 days'
+    paths:
+      - dist/

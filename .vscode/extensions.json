@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "vue.volar",
+    "EditorConfig.EditorConfig",
+    "dbaeumer.vscode-eslint",
+    "OBKoro1.korofileheader",
+    "esbenp.prettier-vscode",
+    "alefragnani.project-manager",
+    "Gruntfuggly.todo-tree",
+    "dionmunk.vscode-notes",
+    "tinkertrain.theme-panda"
+  ]
+}
