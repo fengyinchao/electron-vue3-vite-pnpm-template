@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "调试主进程-Main",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        "--remote-allow-origins=*",
+        "${workspaceFolder}/dist/main/index.cjs",
+      ],
+      "env": {
+        "DEBUG": "true",
+      },
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "sourceMaps": true
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "调试渲染进程-Renderer",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222",
+        "--remote-allow-origins=*",
+        "${workspaceFolder}/dist/main/index.cjs",
+      ],
+      "env": {
+        "DEBUG": "true",
+      },
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "sourceMaps": true,
+      "url": "http://localhost:3344",
+      "webRoot": "${workspaceFolder}/packages/renderer",
+    },
+  ],
+  "compounds": [
+    {
+      "name": "All(inspector)",
+      "configurations": [
+        "调试主进程-Main",
+        "调试渲染进程-Renderer",
+      ],
+      "preLaunchTask": "npm: prebuild"
+    },
+  ]
+}

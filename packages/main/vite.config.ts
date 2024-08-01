@@ -3,7 +3,6 @@ import path from 'path'
 import { defineConfig } from 'vite'
 
 import pkg from '../../package.json'
-
 export default defineConfig({
   root: __dirname,
   base: './',
@@ -18,9 +17,9 @@ export default defineConfig({
   build: {
     outDir: '../../dist/main',
     lib: {
-      entry: 'entry.ts',
+      entry: 'index.ts',
       formats: ['cjs'],
-      fileName: () => 'entry.cjs',
+      fileName: () => 'index.cjs',
     },
     minify: process.env./* from mode option */ NODE_ENV === 'production',
     sourcemap: true,
