@@ -9,6 +9,7 @@ import { BrowserWindow, app, shell } from 'electron'
 import { release } from 'os'
 import { join } from 'path'
 import { getPlatform, isInDev } from '@main/utils/os'
+import useDebug from '@main/utils/debug'
 
 async function ApplicationInit() {
   console.info(`Electron version: ${process.versions.electron}`)
@@ -41,7 +42,7 @@ async function ApplicationInit() {
     if (isInDev()) {
       console.warn('You are in development mode')
       win.webContents.on('did-frame-finish-load', () => {
-        // useDebug(win)
+        useDebug(win)
       })
     }
 

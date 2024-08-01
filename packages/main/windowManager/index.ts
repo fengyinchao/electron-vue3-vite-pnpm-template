@@ -5,12 +5,11 @@
  */
 import { Singleton } from '@common/function/singletonDecorator'
 import { getPlatform } from '@main/utils/os'
-import type { Module } from '@type/misc'
 import { BrowserWindow } from 'electron'
 import { join } from 'path'
 
 @Singleton
-class WindowManager implements Module {
+class WindowManager {
   private readonly _window: BrowserWindow
 
   constructor() {
