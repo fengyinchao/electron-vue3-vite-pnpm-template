@@ -2,32 +2,50 @@
 
 基于 electron-vue3-vite-pnpm 开发的模板
 
+# 特色
+
+## 前沿技术栈
+
+- pnpm 管理依赖
+- vite 快速构建
+- vue3 组合式 API
+- typescript
+
+## 流行的开发规范
+
+- eslint
+- prettier
+- husky
+- commitlint
+- editorconfig
+- changeset
+
 # 开发
 
-```shell
-pnpm i
+## 安装依赖
+
+```bash
+pnpm install
+```
+
+## 运行
+
+```bash
 pnpm dev
 ```
 
-# 分支管理
+## 调试
 
-- test 测试环境
-- master 生产环境
+vscode 切到 运行和调试 按钮，选择 调试主进程-Main
 
-# 部署
+## 打包
 
-- 合并到 test 分支自动发测试环境
-- 合并到 master 分支，自动打包，成功后到部署系统: https://publisher.zonst.com 手动发版
+```bash
+pnpm package
+```
 
-# 协作流程
+## 制作安装包
 
-- 从 master 拉取功能分支，进行开发
-- 开发完成合并到测试环境进行提测
-- 测试通过后，向 master 分支提出 MR
-- MR 通过后，关注构建结果，并前往部署系统: https://publisher.zonst.com 发版
-
-# 开发一个新模块的基本流程
-
-- 到 zlink 系统菜单管理模块去新建菜单
-- 通过 pnpm new 的方式创建新模块，注意模块名要和菜单路由保持一致
-- 关于类型，尽量复用后端定义的类型(@zonst-types/mahpilot-admin-v1)
+```bash
+pnpm make
+```
