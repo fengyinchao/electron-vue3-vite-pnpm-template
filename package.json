@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "com.fengyinchao.electron",
   "private": true,
   "main": "dist/main/index.cjs",
   "version": "1.0.0",
@@ -35,9 +35,11 @@
     ]
   },
   "dependencies": {
+    "appdmg": "0.6.6",
     "electron-devtools-installer": "3.2.0",
-    "systeminformation": "5.17.17",
-    "appdmg": "0.6.6"
+    "electron-log": "5.1.7",
+    "make-dir": "5.0.0",
+    "systeminformation": "5.17.17"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.0",

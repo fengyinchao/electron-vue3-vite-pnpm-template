@@ -10,11 +10,14 @@ import { release } from 'os'
 import { join } from 'path'
 import { getPlatform, isInDev } from '@main/utils/os'
 import useDebug from '@main/utils/debug'
+import { LogService } from './base-services/log.service'
+import { info } from 'electron-log'
 
 async function ApplicationInit() {
-  console.info(`Electron version: ${process.versions.electron}`)
-  console.info(`Chromium version: ${process.versions.chrome}`)
-  console.info(`Node version: ${process.versions.node}`)
+  await LogService.init()
+  info(`Electron version: ${process.versions.electron}`)
+  info(`Chromium version: ${process.versions.chrome}`)
+  info(`Node version: ${process.versions.node}`)
 
   // 禁用 GPU 加速，因为在某些系统上，GPU 加速会导致应用程序在某些情况下出现问题。
   if (release().startsWith('6.1')) app.disableHardwareAcceleration()
