@@ -11,6 +11,8 @@ export interface Backdoor {
 export interface ElectronAPI {
   sendMessage: (channel: string, data: any) => void
   receiveMessage: (channel: string, func: (...data: any) => void) => void
+  getStoreValue: (key: string) => any
+  setStoreValue: (key: string, value: any) => void
 }
 
 declare global {

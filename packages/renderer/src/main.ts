@@ -13,3 +13,4 @@ const app = createApp(App)
 app.mount('#app')
 
 window.removeLoading()
+console.log('===', window.electronApi.getStoreValue('login'))

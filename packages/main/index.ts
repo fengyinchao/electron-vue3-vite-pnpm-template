@@ -12,10 +12,12 @@ import { info } from 'electron-log'
 import { getPlatform, isInDev } from '@main/utils/os'
 import { LogService } from './base-services/log.service'
 import { BackDoorService } from './base-services/backdoor.service'
+import { ElectronStoreService } from './base-services/electron-store.service'
 
 async function ApplicationInit() {
   await LogService.init()
   await BackDoorService.init()
+  await ElectronStoreService.init()
   info(`[main/index] Electron version: ${process.versions.electron}`)
   info(`[main/index] Chromium version: ${process.versions.chrome}`)
   info(`[main/index] Node version: ${process.versions.node}`)

@@ -25,6 +25,15 @@ const api: ElectronAPI = {
     // 只允许特定的频道
     ipcRenderer.on(channel, (event, ...args) => func(...args))
   },
+
+  setStoreValue: (key: string, value: any) => {
+    ipcRenderer.send('setStore', key, value)
+  },
+
+  getStoreValue(key: string) {
+    const resp = ipcRenderer.sendSync('getStore', key)
+    return resp
+  },
 }
 
 // 将 api 暴露给渲染进程
