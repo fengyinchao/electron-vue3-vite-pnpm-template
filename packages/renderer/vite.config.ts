@@ -16,6 +16,9 @@ export default defineConfig({
       '@type': path.join(__dirname, '../types'),
     },
   },
+  server: {
+    port: 3344,
+  },
   build: {
     emptyOutDir: true,
     sourcemap: true,

@@ -5,6 +5,6 @@
 -->
 <script setup lang="ts"></script>
 
-<template>Hello world</template>
+<template>Hello world1111</template>
 
 <style lang="scss" scoped></style>

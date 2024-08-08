@@ -9,15 +9,14 @@ import { BrowserWindow, app, shell } from 'electron'
 import { release } from 'os'
 import { join } from 'path'
 import { getPlatform, isInDev } from '@main/utils/os'
-import useDebug from '@main/utils/debug'
 import { LogService } from './base-services/log.service'
 import { info } from 'electron-log'
 
 async function ApplicationInit() {
   await LogService.init()
-  info(`Electron version: ${process.versions.electron}`)
-  info(`Chromium version: ${process.versions.chrome}`)
-  info(`Node version: ${process.versions.node}`)
+  info(`[main/index] Electron version: ${process.versions.electron}`)
+  info(`[main/index] Chromium version: ${process.versions.chrome}`)
+  info(`[main/index] Node version: ${process.versions.node}`)
 
   // 禁用 GPU 加速，因为在某些系统上，GPU 加速会导致应用程序在某些情况下出现问题。
   if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -32,20 +31,18 @@ async function ApplicationInit() {
 
   async function createApp(): Promise<void> {
     const win = new WindowManager().getWindow()
-    if (app.isPackaged || isInDev()) {
+    if (app.isPackaged || !isInDev()) {
       win.loadFile(join(__dirname, '../renderer/index.html'))
     } else {
       // 🚧 Use ['ENV_NAME'] avoid vite:define plugin
-      const host = process.env.VITE_DEV_SERVER_HOST
-      const port = process.env.VITE_DEV_SERVER_PORT
-      const url = `http://${host ?? 'localhost'}:${port ?? '3344'}`
+      const url = `http://localhost:3344`
       win.loadURL(url)
     }
 
     if (isInDev()) {
       console.warn('You are in development mode')
       win.webContents.on('did-frame-finish-load', () => {
-        useDebug(win)
+        win.webContents.openDevTools({ mode: 'detach' })
       })
     }
 
