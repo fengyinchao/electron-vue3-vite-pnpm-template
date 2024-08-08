@@ -11,3 +11,5 @@ import './App.scss'
 info(`[渲染进程] 渲染进程启动成功`)
 const app = createApp(App)
 app.mount('#app')
+
+window.removeLoading()

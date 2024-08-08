@@ -68,7 +68,7 @@ export function useLoading() {
         loading.unmount()
         document.body.removeChild(oDiv)
         document.head.removeChild(oStyle)
-      }, 5000)
+      }, 4000)
     },
   }
 }

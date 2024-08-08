@@ -18,5 +18,8 @@
   "fileheader.cursorMode": {}, // 头部注释
   "fileheader.configObj": {
     "autoAdd": false // 默认开启
+  },
+  "[hjson]": {
+    "editor.defaultFormatter": "Tanh.hjson-formatter"
   }
 }

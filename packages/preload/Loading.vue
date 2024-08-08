@@ -13,10 +13,6 @@ import { getTip } from './tips'
 
 const loadingText = ref('Loading...')
 
-window.updateLoadingText = function (text: string) {
-  loadingText.value = text
-}
-
 onMounted(() => {
   anime
     .timeline({

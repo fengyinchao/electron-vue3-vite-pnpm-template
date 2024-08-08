@@ -8,12 +8,14 @@ import WindowManager from '@main/windowManager'
 import { BrowserWindow, app, shell } from 'electron'
 import { release } from 'os'
 import { join } from 'path'
+import { info } from 'electron-log'
 import { getPlatform, isInDev } from '@main/utils/os'
 import { LogService } from './base-services/log.service'
-import { info } from 'electron-log'
+import { BackDoorService } from './base-services/backdoor.service'
 
 async function ApplicationInit() {
   await LogService.init()
+  await BackDoorService.init()
   info(`[main/index] Electron version: ${process.versions.electron}`)
   info(`[main/index] Chromium version: ${process.versions.chrome}`)
   info(`[main/index] Node version: ${process.versions.node}`)

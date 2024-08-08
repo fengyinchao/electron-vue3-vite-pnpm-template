@@ -8,6 +8,8 @@
     "alefragnani.project-manager",
     "Gruntfuggly.todo-tree",
     "dionmunk.vscode-notes",
-    "tinkertrain.theme-panda"
+    "tinkertrain.theme-panda",
+    "laktak.hjson",
+    "tanh.hjson-formatter"
   ]
 }

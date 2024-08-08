@@ -14,12 +14,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@type/*": ["../types/*"],
+      "@common-types/*": ["../common-types/*"],
       "@main/*": ["../main/*"],
       "@common/*": ["../common/*"]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*.ts", "../types/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "../common-types/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
