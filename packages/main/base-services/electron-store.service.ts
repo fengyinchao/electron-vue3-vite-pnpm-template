@@ -37,10 +37,12 @@ export class ElectronStoreService {
 
     // 定义ipcRenderer监听事件
     ipcMain.on('setStore', (_, key, value) => {
+      // @ts-ignore
       this.storeInstance.set(key, value)
     })
 
     ipcMain.on('getStore', (_, key) => {
+      // @ts-ignore
       const value = this.storeInstance.get(key)
       _.returnValue = value || ''
     })
@@ -48,6 +50,7 @@ export class ElectronStoreService {
 
   static setItem(key: string, value: any) {
     try {
+      // @ts-ignore
       this.storeInstance.set(key, value)
       info(`[存储服务] 设置项成功: ${key}`)
     } catch (err) {
@@ -57,6 +60,7 @@ export class ElectronStoreService {
 
   static getItem(key: keyof StoreData): any {
     try {
+      // @ts-ignore
       const value = this.storeInstance.get(key)
       info(`[存储服务] 获取项成功: ${key}`)
       return value
@@ -68,6 +72,7 @@ export class ElectronStoreService {
 
   static deleteItem(key: keyof StoreData) {
     try {
+      // @ts-ignore
       this.storeInstance.delete(key)
       info(`[存储服务] 删除项成功: ${key}`)
     } catch (err) {
@@ -77,6 +82,7 @@ export class ElectronStoreService {
 
   static clear() {
     try {
+      // @ts-ignore
       this.storeInstance.clear()
       info('[存储服务] 清空所有项成功')
     } catch (err) {
