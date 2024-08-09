@@ -4,7 +4,6 @@
  * @Date: 2024-08-07 16:07:07
  */
 
-import { type Backdoor } from '@common/types/global'
 import { app } from 'electron'
 import { join } from 'path'
 import { parse as parseHjson } from 'hjson'
@@ -17,6 +16,7 @@ export class BackDoorService {
     try {
       global.backdoor = await this.getBackdoorConfig()
       info(`[后门服务] 后门服务初始化成功:`, global.backdoor)
+      return global.backdoor
     } catch (err) {
       error('[后门服务] 主进程后门服务初始化失败: ', err)
     }

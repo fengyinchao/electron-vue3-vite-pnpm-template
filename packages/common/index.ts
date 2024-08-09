@@ -5,20 +5,27 @@
  */
 import { contextBridge, ipcMain } from 'electron'
 import { offMsgFromMain, onMsgFromMain, onRenderMsgToRender, renderMsgToMain, renderMsgToRender } from './ipc/preload'
-import { getWindow } from '@common/window'
+import { getWindow } from './window'
+import { getStoreValue, setStoreValue } from './store/preload'
+import { getBackdoorConfigFromMain } from './backdoor/preload'
 
 export function initExposeInMainWorld(): void {
-  contextBridge.exposeInMainWorld('ipc', {
+  contextBridge.exposeInMainWorld('electronApi', {
     // communication
     renderMsgToMain,
     onMsgFromMain,
     offMsgFromMain,
     renderMsgToRender,
     onRenderMsgToRender,
+    // store
+    getStoreValue,
+    setStoreValue,
+    // backdoor
+    getBackdoorConfigFromMain,
   })
 }
 
-function initOnRenderMsgToRender(): void {
+export function initIpc(): void {
   ipcMain.on('renderMsgToRender', (event: Electron.IpcMainEvent, args: any) => {
     const windowInstance = getWindow(args.windowName)
     if (windowInstance) {
@@ -27,8 +34,4 @@ function initOnRenderMsgToRender(): void {
       throw new Error('not find windowInstance')
     }
   })
-}
-
-export function initIpc(): void {
-  initOnRenderMsgToRender()
 }

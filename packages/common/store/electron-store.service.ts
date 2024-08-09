@@ -6,16 +6,7 @@
 
 import type ElectronStore from 'electron-store'
 import { error, info } from 'electron-log'
-import { ipcMain } from 'electron'
-
-interface StoreData {
-  login: boolean
-  userInfo: {
-    username: string
-    password: string
-    token: string
-  } | null
-}
+import { electronStoreFileName } from '@common/const'
 
 export class ElectronStoreService {
   private static storeInstance: ElectronStore<StoreData>
@@ -24,28 +15,17 @@ export class ElectronStoreService {
     const Store = (await import('electron-store')).default
     try {
       this.storeInstance = new Store<StoreData>({
-        name: 'tutor-electron-student',
+        name: electronStoreFileName,
         defaults: {
           login: true,
           userInfo: null,
         },
       })
       info('[存储服务] 存储服务初始化成功')
+      return this.storeInstance
     } catch (err) {
       error('[存储服务] 存储服务初始化失败: ', err)
     }
-
-    // 定义ipcRenderer监听事件
-    ipcMain.on('setStore', (_, key, value) => {
-      // @ts-ignore
-      this.storeInstance.set(key, value)
-    })
-
-    ipcMain.on('getStore', (_, key) => {
-      // @ts-ignore
-      const value = this.storeInstance.get(key)
-      _.returnValue = value || ''
-    })
   }
 
   static setItem(key: string, value: any) {

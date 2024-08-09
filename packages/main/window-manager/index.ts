@@ -3,10 +3,10 @@
  * @Author: Feng Yinchao
  * @Date: 2024-07-24 13:56:08
  */
-import { createWindow } from '@common/window'
-import { platform, isDev } from '@common/const'
+import { platform, isDev, localHostUrl } from '@common/const'
 import { app, shell } from 'electron'
 import { join } from 'path'
+import { createWindow } from '@common/window'
 
 export const initMainWindow = () => {
   const mainWindow = createWindow('main', {
@@ -43,9 +43,7 @@ export const initMainWindow = () => {
   if (app.isPackaged || !isDev) {
     mainWindow.loadFile(join(__dirname, '../../renderer/index.html'))
   } else {
-    // 🚧 Use ['ENV_NAME'] avoid vite:define plugin
-    const url = `http://localhost:3344`
-    mainWindow.loadURL(url)
+    mainWindow.loadURL(localHostUrl)
   }
 
   if (isDev) {
@@ -57,7 +55,7 @@ export const initMainWindow = () => {
 
   // Make all links open with the browser, not with the application
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https:')) shell.openExternal(url)
+    shell.openExternal(url)
     return { action: 'deny' }
   })
 

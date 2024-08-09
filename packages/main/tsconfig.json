@@ -18,5 +18,5 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./**/*.ts", "../common/**/*.ts", "../renderer/src/global.d.ts"]
+  "include": ["./**/*.ts", "../common/**/*.d.ts", "../common/**/*.ts"]
 }

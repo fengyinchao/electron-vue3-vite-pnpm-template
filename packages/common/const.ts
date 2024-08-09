@@ -42,8 +42,8 @@ const getPlatform = (): Platform => {
   return platform
 }
 
-const getSystemInformation = async (): Promise<any> => {
-  return await SystemInformation.getStaticData()
+export const getSystemInformation = async (): Promise<any> => {
+  return await SystemInformation.mem()
 }
 
 const hasElectron =
@@ -59,6 +59,7 @@ export const isPreload: boolean = hasElectron && hasUserAgent
 export const isDev: boolean = isInDev()
 export const arch: Arch = getArch()
 export const platform: Platform = getPlatform()
-export const systemInformation = getSystemInformation()
-
 export const backdoorFileName = 'tutor-electron-student.hjson'
+export const electronStoreFileName = 'tutor-electron-student'
+
+export const localHostUrl = 'http://localhost:3344'

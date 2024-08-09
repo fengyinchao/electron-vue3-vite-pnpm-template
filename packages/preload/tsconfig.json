@@ -14,10 +14,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@main/*": ["../main/*"],
       "@common/*": ["../common/*"]
     }
   },
-  "include": ["./**/*.ts", "./**/*.vue", "../common/**/*.ts", "../renderer/src/global.d.ts"]
+  "include": ["./**/*.ts", "./**/*.vue", "../common/**/*.ts"]
 }

@@ -9,17 +9,24 @@ import { BrowserWindow, app } from 'electron'
 import { release } from 'os'
 import { info } from 'electron-log'
 import { LogService } from './base-services/log.service'
-import { BackDoorService } from './base-services/backdoor.service'
-import { ElectronStoreService } from './base-services/electron-store.service'
-import { platform } from '@common/const'
+import { arch, platform, getSystemInformation } from '@common/const'
+import { initElectronStore } from '@common/store/main'
+import { initIpc } from '@common/index'
+import { initBackdoorService } from '@common/backdoor/main'
 
 async function ApplicationInit() {
   await LogService.init()
-  await BackDoorService.init()
-  await ElectronStoreService.init()
+  await initBackdoorService()
+  await initElectronStore()
+  initIpc()
   info(`[main/index] Electron version: ${process.versions.electron}`)
   info(`[main/index] Chromium version: ${process.versions.chrome}`)
   info(`[main/index] Node version: ${process.versions.node}`)
+  info(`[main/index] Platform: ${platform}`)
+  info(`[main/index] Arch: ${arch}`)
+  getSystemInformation().then(systemInformation => {
+    info(`[main/index] SystemInfo: ${JSON.stringify(systemInformation)}`)
+  })
 
   // 禁用 GPU 加速，因为在某些系统上，GPU 加速会导致应用程序在某些情况下出现问题。
   if (release().startsWith('6.1')) app.disableHardwareAcceleration()

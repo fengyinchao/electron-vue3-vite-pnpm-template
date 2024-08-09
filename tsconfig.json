@@ -11,8 +11,7 @@
     "baseUrl": ".",
     "strict": true,
     "paths": {
-      "@common/*": ["./packages/common/*"],
-      "@main/*": ["./packages/main/*"]
+      "@common/*": ["./packages/common/*"]
     },
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,

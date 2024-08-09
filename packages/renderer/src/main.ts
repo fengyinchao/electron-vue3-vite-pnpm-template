@@ -14,3 +14,4 @@ app.mount('#app')
 
 window.removeLoading()
 console.log('===', window.electronApi.getStoreValue('login'))
+console.log('===backdoor', window.electronApi.getBackdoorConfigFromMain())
