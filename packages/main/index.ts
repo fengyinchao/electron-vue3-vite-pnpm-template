@@ -7,18 +7,28 @@
 import { initMainWindow } from '@main/window-manager'
 import { BrowserWindow, app } from 'electron'
 import { release } from 'os'
-import { info } from 'electron-log'
+import { info, error } from 'electron-log'
 import { LogService } from './base-services/log.service'
 import { arch, platform, getSystemInformation } from '@common/const'
 import { initElectronStore } from '@common/store/main'
 import { initIpc } from '@common/index'
 import { initBackdoorService } from '@common/backdoor/main'
+// import { initUpdate, intsallUpdateApp } from '@common/update/full-update.service'
+import { inspect } from 'util'
 
 async function ApplicationInit() {
   await LogService.init()
   await initBackdoorService()
   await initElectronStore()
   initIpc()
+  // TODO:update server
+  // initUpdate({
+  //   updateUrl: 'URL_ADDRESS',
+  //   autoDownload: true,
+  //   forceDevUpdateConfig: true,
+  //   updateDownloadedCallBack: intsallUpdateApp,
+  //   log: true,
+  // })
   info(`[main/index] Electron version: ${process.versions.electron}`)
   info(`[main/index] Chromium version: ${process.versions.chrome}`)
   info(`[main/index] Node version: ${process.versions.node}`)
@@ -69,4 +79,16 @@ async function ApplicationInit() {
   app.whenReady().then(createApp)
 }
 
-ApplicationInit()
+ApplicationInit().catch(err => {
+  error('[ApplicationInit error:]', inspect(err))
+})
+
+process.on('unhandledRejection', reason => {
+  error('[Application UnhandledRejection Error]', 'reason:', inspect(reason))
+  process.exit(1)
+})
+
+process.on('uncaughtException', err => {
+  error('[Application UncaughtException Error]', 'err:', inspect(err))
+  process.exit(1)
+})

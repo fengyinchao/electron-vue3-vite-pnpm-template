@@ -10,7 +10,7 @@
   "scripts": {
     "prepare": "rm -rf node_modules/electron/dist && node node_modules/electron/install.js && husky install",
     "preinstall": "only-allow pnpm",
-    "postinstall": "./node_modules/.bin/electron-rebuild",
+    "postinstall": "./node_modules/.bin/electron-rebuild && electron-builder install-app-deps",
     "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 node scripts/watch.mjs",
     "prebuild": "cross-env NODE_OPTIONS=--max-old-space-size=8192 &&  node scripts/build.mjs",
     "make": "cross-env NODE_OPTIONS=--max-old-space-size=8192 DEBUG=electron-packager electron-forge make",
@@ -18,7 +18,8 @@
     "package": "cross-env NODE_OPTIONS=--max-old-space-size=8192 electron-forge package",
     "tsc": "vue-tsc --noEmit ",
     "eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
-    "new": "plop"
+    "new": "plop",
+    "electron-build": "electron-builder -c electron-builder.config.ts"
   },
   "engines": {
     "node": ">=18.12.0"
@@ -39,6 +40,7 @@
     "appdmg": "0.6.6",
     "electron-log": "5.1.7",
     "electron-store": "9.0.0",
+    "electron-updater": "6.2.1",
     "hjson": "3.2.2",
     "make-dir": "5.0.0",
     "systeminformation": "5.17.17"
@@ -54,7 +56,6 @@
     "@electron-forge/maker-squirrel": "6.4.0",
     "@electron-forge/maker-zip": "6.4.0",
     "@electron-forge/plugin-vite": "6.4.0",
-    "@electron/rebuild": "3.6.0",
     "@types/animejs": "3.1.12",
     "@types/crypto-js": "4.2.2",
     "@types/hjson": "2.4.6",
@@ -73,6 +74,7 @@
     "cross-env": "7.0.3",
     "dayjs": "1.11.9",
     "electron": "26.0.0",
+    "electron-builder": "24.13.3",
     "eslint": "8.56.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-config-standard": "17.0.0",
