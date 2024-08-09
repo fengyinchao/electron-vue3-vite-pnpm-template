@@ -15,10 +15,9 @@
     "emitDecoratorMetadata": true,
     "paths": {
       "@/*": ["src/*"],
-      "@common-types/*": ["../common-types/*"],
       "@main/*": ["../main/*"],
       "@common/*": ["../common/*"]
     }
   },
-  "include": ["./**/*.ts", "./**/*.vue", "../common-types/**/*.ts", "../common/**/*.ts", "../renderer/src/global.d.ts"]
+  "include": ["./**/*.ts", "./**/*.vue", "../common/**/*.ts", "../renderer/src/global.d.ts"]
 }

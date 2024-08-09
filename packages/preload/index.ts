@@ -4,7 +4,7 @@
  * @Date: 2024-07-24 13:56:08
  */
 import { contextBridge, ipcRenderer } from 'electron'
-import { type ElectronAPI } from '@common-types/global'
+import { type ElectronAPI } from '@common/types/global'
 import { useLoading } from './loading'
 import { domReady } from './utils'
 
@@ -16,7 +16,7 @@ const { appendLoading, removeLoading } = useLoading()
 })()
 
 // 使用 contextBridge 暴露 API
-const api: ElectronAPI = {
+const api: Partial<ElectronAPI> = {
   sendMessage: (channel, data) => {
     // 只允许特定的频道
     ipcRenderer.send(channel, data)

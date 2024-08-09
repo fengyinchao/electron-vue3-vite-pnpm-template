@@ -13,6 +13,12 @@ export interface ElectronAPI {
   receiveMessage: (channel: string, func: (...data: any) => void) => void
   getStoreValue: (key: string) => any
   setStoreValue: (key: string, value: any) => void
+
+  renderMsgToMain: (key: any) => any
+  onMsgFromMain: (callback: (event: any, args: any) => void) => void
+  offMsgFromMain: (callback: (event: any, args: any) => void) => void
+  renderMsgToRender: (windowName: string, msg: any) => void
+  onRenderMsgToRender: (callback: (event: any, args: any) => void) => void
 }
 
 declare global {

@@ -4,12 +4,13 @@
  * @Date: 2024-08-07 16:07:07
  */
 
-import { type Backdoor } from '@common-types/global'
+import { type Backdoor } from '@common/types/global'
 import { app } from 'electron'
 import { join } from 'path'
 import { parse as parseHjson } from 'hjson'
 import { readFileSync } from 'fs-extra'
 import { error, info } from 'electron-log'
+import { backdoorFileName } from '@common/const'
 
 export class BackDoorService {
   static async init() {
@@ -24,7 +25,7 @@ export class BackDoorService {
   static async getBackdoorConfig(): Promise<Backdoor> {
     try {
       const path = app.getPath('desktop')
-      return parseHjson(readFileSync(join(path, 'tutor-electron-student.hjson'), { encoding: 'utf-8' }).trim()) || {}
+      return parseHjson(readFileSync(join(path, backdoorFileName), { encoding: 'utf-8' }).trim()) || {}
     } catch (e) {
       return {}
     }

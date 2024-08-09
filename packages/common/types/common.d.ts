@@ -7,3 +7,6 @@ declare module '*.png' {
   const src: string
   export default src
 }
+
+type Arch = 'noArch' | 'x64' | 'arm64'
+type Platform = 'windows' | 'linux' | 'macos' | 'noPlatform'

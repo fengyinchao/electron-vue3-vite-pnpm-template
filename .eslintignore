@@ -18,4 +18,4 @@ tsup.config.dev.ts
 plop-templates
 plopfile.js
 src/types
-packages/common-types
+packages/common/types

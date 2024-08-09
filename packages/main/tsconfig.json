@@ -12,12 +12,11 @@
     "lib": ["esnext"],
     "baseUrl": ".",
     "paths": {
-      "@common-types/*": ["../common-types/*"],
       "@main/*": ["./*"],
       "@common/*": ["../common/*"]
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./**/*.ts", "../common-types/**/*.ts", "../common/**/*.ts", "../renderer/src/global.d.ts"]
+  "include": ["./**/*.ts", "../common/**/*.ts", "../renderer/src/global.d.ts"]
 }
