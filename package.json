@@ -2,7 +2,7 @@
   "name": "com.fengyinchao.electron",
   "private": true,
   "main": "dist/main/index.cjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "fengyinchao@zonst.cn",
   "templateBy": "fengyinchao<15926339107@163.com>",
   "license": "MIT",
@@ -11,12 +11,12 @@
     "prepare": "rm -rf node_modules/electron/dist && node node_modules/electron/install.js && husky install",
     "preinstall": "only-allow pnpm",
     "postinstall": "electron-builder install-app-deps",
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 node scripts/watch.mjs",
     "prebuild": "cross-env NODE_OPTIONS=--max-old-space-size=8192 &&  node scripts/build.mjs",
+    "build": "rm -rf release && pnpm prebuild && electron-builder build --config ./electron-builder.config.ts",
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 node scripts/watch.mjs",
     "tsc": "vue-tsc --noEmit ",
     "eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
-    "new": "plop",
-    "electron-build": "electron-builder -c electron-builder.config.ts"
+    "new": "plop"
   },
   "engines": {
     "node": ">=18.12.0"

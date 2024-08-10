@@ -5,6 +5,7 @@
  */
 import { platform, isDev, localHostUrl } from '@common/const'
 import { app, shell } from 'electron'
+import { info } from 'electron-log'
 import { join } from 'path'
 import { createWindow } from '@common/window'
 
@@ -26,6 +27,7 @@ export const initMainWindow = () => {
       contextIsolation: true,
     },
   })
+  info('[window-manager] mainWindow created ')
 
   if (platform === 'macos') {
     mainWindow.setWindowButtonPosition({
@@ -41,8 +43,10 @@ export const initMainWindow = () => {
   }
 
   if (app.isPackaged || !isDev) {
-    mainWindow.loadFile(join(__dirname, '../../renderer/index.html'))
+    info('[window-manager] load file ')
+    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   } else {
+    info('[window-manager] load localhost')
     mainWindow.loadURL(localHostUrl)
   }
 

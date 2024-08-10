@@ -60,6 +60,9 @@ export class LogService {
       transports.file.maxSize = 1 << 30 // 1Gb
       // 设置 console transport
       transports.console.format = '{h}:{i}:{s}:{ms} \t[{level}] \t{text}'
+      info('')
+      info('=============================== 应用重启了 ================================')
+      info('')
       info(`[日志服务] 主进程日志初始化成功，当前日期: ${dayjs(nowTime).format('YYYY-MM-DD')}`)
     } catch (err) {
       error('[日志服务] 主进程日志初始化失败(initElectronLog): ', err)

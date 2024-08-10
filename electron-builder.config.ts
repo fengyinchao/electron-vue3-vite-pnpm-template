@@ -6,11 +6,11 @@
 import type { Configuration } from 'electron-builder'
 
 const config: Configuration = {
-  productName: '风之化身', // 应用程序名称
   appId: 'com.fengyinchao.fzhs', // 应用程序唯一标识
+  productName: 'fyc', // 应用程序名称
   copyright: 'Copyright © 2024',
   asar: false, // 是否将应用程序打包为asar文件
-  files: ['dist/**', 'package.json', 'resources'], // 将要打包的文件或目录
+  files: ['dist/**', 'package.json'], // 将要打包的文件或目录
   directories: {
     output: 'release', // 打包输出目录
     buildResources: 'resources', // 构建资源目录
@@ -37,13 +37,13 @@ const config: Configuration = {
   dmg: {
     backgroundColor: '#ffffff', // 创建 dmg 文件时窗口的背景颜色
     window: { width: 540, height: 380 }, // 创建 dmg 文件时窗口大小
-    icon: './icon/icon.icns', // dmg 文件所带的图标
+    icon: './resources/icon/icon.icns', // dmg 文件所带的图标
     iconSize: 128, // 图标大小
     contents: [
       { x: 410, y: 190, type: 'link', path: '/Applications' }, // dmg 文件中的可执行文件路径
       { x: 130, y: 190, type: 'file' }, // dmg 文件中的文件路径
     ],
-    title: '风之化身', // dmg 文件的标题
+    title: 'fyc', // dmg 文件的标题
   },
   win: {
     icon: './resources/icon/icon.ico', // 可执行文件的图标
